@@ -1,0 +1,15 @@
+h1 {
+  width: 90%;
+  padding: 5%;
+  padding-left: 20%;
+  font-size: 5em;
+}
+
+.tasksContainer {
+  width: 45%;
+  transform: translateX(-50%);
+  margin-left: 50%;
+  @media (max-width: "500px") {
+    width: 90%;
+  }
+}
