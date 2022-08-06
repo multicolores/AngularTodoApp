@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from '../component/task';
+
+import { Task } from '../interface/task';
 import { TaskService } from '../task.service';
+
+import { MatDialog } from '@angular/material/dialog';
+import { DialogNewtaskComponent } from '../component/dialog-newtask/dialog-newtask.component';
 
 @Component({
   selector: 'app-task',
@@ -9,7 +13,7 @@ import { TaskService } from '../task.service';
 })
 export class TaskComponent implements OnInit {
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, public dialog: MatDialog,) { }
 
   ngOnInit(): void {
     this.getTasks();
@@ -38,5 +42,12 @@ export class TaskComponent implements OnInit {
       this.tasks = data;
     })
     // console.log(this.taskService.getTasks());
+  }
+
+  createNewTask():void {
+    const dialogref = this.dialog.open(DialogNewtaskComponent);
+    dialogref.afterClosed().subscribe((result)=> {
+      console.log(result);
+    })
   }
 }

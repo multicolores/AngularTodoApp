@@ -9,9 +9,27 @@
 body {
   background: #1b1c1e;
   color: white;
-  font-family: "Montserrat";
+  font-family: "Montserrat" !important;
 }
 
 h1 {
   font-weight: 900;
+}
+h1,
+h2,
+h3,
+p,
+button,
+input,
+label {
+  font-family: "Montserrat" !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

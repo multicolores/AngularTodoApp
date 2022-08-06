@@ -1,0 +1,24 @@
+h2 {
+  font-size: 2.5em;
+  font-weight: 900;
+  padding: 5% 1%;
+  @media (max-width: "500px") {
+    font-size: 8vw;
+  }
+}
+
+.inputsContainer {
+  .input {
+    width: 100%;
+    padding: 0% 5%;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  .mat-primary {
+    background: #65f09d;
+  }
+}

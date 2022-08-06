@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Create a new task</h2>
+
+<mat-dialog-content [formGroup]="form" class="inputsContainer">
+  <mat-form-field class="input">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="" formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field class="input">
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="" formControlName="description" />
+  </mat-form-field>
+
+  <mat-form-field class="input">
+    <mat-label>Importance</mat-label>
+    <input matInput placeholder="" formControlName="importance" />
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions class="buttons">
+  <button class="mat-raised-button" (click)="close()">Close</button>
+  <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+</mat-dialog-actions>
