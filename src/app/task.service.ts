@@ -9,6 +9,9 @@ import { Task } from './interface/task';
   providedIn: 'root'
 })
 export class TaskService {
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +24,21 @@ export class TaskService {
     );
   }
 
+  createTask(newTask: Task): Observable<Task> {
+    return this.http.post<Task>(this.apiTasksUrl, newTask, this.httpOptions).pipe(
+      catchError(this.handleError<Task>('create new task error'))
+    );
+  }
+
+  deleteTask(id: number): Observable<Task> {
+    const url = `${this.apiTasksUrl}/${id}`;
+    return this.http.delete<Task>(url, this.httpOptions).pipe(catchError(this.handleError<Task>('deleteData')));
+  }
+
+  putTask(id: number, updatedTask: Task):Observable<Task>{
+    const url = `${this.apiTasksUrl}/${id}`;
+    return this.http.put<Task>(url, updatedTask, this.httpOptions).pipe(catchError(this.handleError<Task>('putData')));
+  }
 
 
   private handleError<T>(operation = 'operation', result?: T) {

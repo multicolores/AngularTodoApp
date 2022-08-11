@@ -1,12 +1,19 @@
 <button
   mat-fab
   color="primary"
-  aria-label="Example icon button with a delete icon"
+  aria-label="Add a new task button"
   class="buttonAddNewTask"
   (click)="createNewTask()"
 >
   <mat-icon>add_task</mat-icon>
 </button>
+
+<div class="taskleftToDo_container">
+  <div *ngFor="let state of taskLeftToDo">
+    <div *ngIf="state" class="done"></div>
+    <div *ngIf="!state" class="todo"></div>
+  </div>
+</div>
 
 <div
   class="task"
@@ -15,9 +22,18 @@
 >
   <h3>{{ task.name }}</h3>
   <p>{{ task.description }}</p>
+  <button
+    mat-fab
+    color="primary"
+    aria-label="Remove the task button"
+    class="buttonRemoveTask"
+    (click)="removeTask(task)"
+  >
+    <mat-icon class="iconRemove">delete</mat-icon>
+  </button>
   <span
     class="task_state todo"
-    (click)="onTaskStatechange()"
+    (click)="taskStatechange(task)"
     [ngClass]="task.finished ? 'done' : 'todo'"
     >{{ task.finished ? "Done" : "Todo" }}</span
   >
