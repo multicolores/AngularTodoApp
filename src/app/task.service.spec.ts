@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { Task } from './interface/task';
 
 import { TaskService } from './task.service';
 
@@ -32,5 +33,37 @@ describe('TaskService', () => {
     expect(testRequest.request.method).toEqual('GET');
   });
 
-  //todo look if the error is good ?
+  it('#createTask should create a new Task with post request', () => {
+    const newTask: Task = {
+      id: 5,
+      name: "New Task",
+      description: "Pull training",
+      finished: true,
+      importance: "important"
+    }
+    service.createTask(newTask).subscribe();
+    const req = httpTestingController.expectOne('http://localhost:8080/api/tasks');
+    expect(req.request.method).toEqual('POST');
+    expect(req.request.body).toEqual(newTask);
+
+    const expectedResponse = new HttpResponse({ status: 201, statusText: 'Created', body: newTask });
+    req.event(expectedResponse);
+  });
+
+  
+  // it('#createTask error 404', () => {
+  //   const newTask: Task = {
+  //     id: 5,
+  //     name: "New Task",
+  //     description: "Pull training",
+  //     finished: true,
+  //     importance: "important"
+  //   }
+  //   service.createTask(newTask).subscribe();
+  //   const req = httpTestingController.expectOne('http://localhost:8080/api/tasks');
+  //   const msg = '404 error';
+  //   req.flush(msg, { status: 404, statusText: 'Not Found' });
+  // });
+
+
 });
